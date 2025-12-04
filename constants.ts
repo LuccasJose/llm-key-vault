@@ -37,4 +37,4 @@ export const MOCK_KEYS: ApiKey[] = [
 ];
 
 // In a real app, this would be an env var
-export const DEMO_PASSWORD = "admin";
+// demo password removed — no login required in this simplified app

@@ -1,24 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { Login } from './components/Login';
 import { KeyCard } from './components/KeyCard';
 import { Generator } from './components/Generator';
 import { StatsChart } from './components/StatsChart';
 import { ApiKey, Provider } from './types';
 import { MOCK_KEYS } from './constants';
-import { LayoutDashboard, Key, PlusCircle, LogOut, Database } from 'lucide-react';
+import { LayoutDashboard, Key, PlusCircle, Database } from 'lucide-react';
 
 const App: React.FC = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [activeTab, setActiveTab] = useState<'dashboard' | 'generator'>('dashboard');
   const [keys, setKeys] = useState<ApiKey[]>([]);
 
-  // Load state from local storage or mocks on mount
+  // Load keys from local storage or use mocks on mount
   useEffect(() => {
-    const storedAuth = localStorage.getItem('llm_vault_auth');
-    if (storedAuth === 'true') {
-      setIsAuthenticated(true);
-    }
-    
     const storedKeys = localStorage.getItem('llm_vault_keys');
     if (storedKeys) {
       setKeys(JSON.parse(storedKeys));
@@ -34,15 +27,7 @@ const App: React.FC = () => {
     }
   }, [keys]);
 
-  const handleLogin = () => {
-    setIsAuthenticated(true);
-    localStorage.setItem('llm_vault_auth', 'true');
-  };
-
-  const handleLogout = () => {
-    setIsAuthenticated(false);
-    localStorage.removeItem('llm_vault_auth');
-  };
+  // no auth in this simplified app
 
   const handleDeleteKey = (id: string) => {
     if (window.confirm("Are you sure you want to remove this key?")) {
@@ -71,10 +56,6 @@ const App: React.FC = () => {
     setActiveTab('generator');
     // In a complex app, we might pre-fill the generator with the provider of the depleted key
   };
-
-  if (!isAuthenticated) {
-    return <Login onLogin={handleLogin} />;
-  }
 
   const totalKeys = keys.length;
   const activeKeys = keys.filter(k => k.status === 'active').length;
@@ -126,7 +107,6 @@ const App: React.FC = () => {
              <Database />
              <span className="font-bold text-white">LLM Vault</span>
            </div>
-           <button onClick={handleLogout} className="text-slate-500"><LogOut size={20} /></button>
         </header>
 
         {activeTab === 'dashboard' ? (
