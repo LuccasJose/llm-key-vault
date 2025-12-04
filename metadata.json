@@ -1,0 +1,5 @@
+{
+  "name": "LLM Key Vault",
+  "description": "A secure dashboard to manage, track, and farm LLM API keys with usage visualization.",
+  "requestFramePermissions": []
+}
