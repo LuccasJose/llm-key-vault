@@ -43,20 +43,13 @@ cd 'c:\Users\lucca\OneDrive\Desktop\aplicação meio foda'
 npm install
 ```
 
-2. Configure variáveis de ambiente (exemplo `.env.local` na raiz):
-
-```text
-# Exemplo de .env.local (NUNCA comitar chaves reais)
-GEMINI_API_KEY=your_gemini_api_key_here
-```
-
-3. Rode o servidor de desenvolvimento:
+2. Rode o servidor de desenvolvimento:
 
 ```powershell
 npm run dev
 ```
 
-4. Abra no navegador em `http://localhost:3000/` (ou a porta indicada pelo Vite).
+3. Abra no navegador em `http://localhost:3000/` (ou a porta indicada pelo Vite).
 
 ## Build para produção
 
@@ -73,11 +66,9 @@ npm run preview
 - Testar requisição ao modelo: garanta que `GEMINI_API_KEY` esteja definida e use os formulários no UI que acionam `services/geminiService.ts`.
 - Visualizar estatísticas: abra a tela `StatsChart` para ver dados de uso (pode estar usando dados mock).
 
-## Segurança e boas práticas
+## Notas de segurança
 
-- Nunca comite arquivos `.env` ou chaves de API. `.gitignore` já inclui `*.env`.
-- Para produção, use segredos do provedor de hospedagem (Vercel, Netlify, GitHub Actions Secrets).
-- Limite o escopo das chaves e monitore uso anômalo.
+Este projeto é apenas uma interface cliente em fase de testes. Evite expor credenciais em repositórios públicos e use mecanismos de segredo do provedor de hospedagem para variáveis sensíveis em produção.
 
 ## Deploy
 
