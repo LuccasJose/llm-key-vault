@@ -1,23 +1,102 @@
 <div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+<h1>LLM Key Vault</h1>
 </div>
 
-# Run and deploy your AI Studio app
+## Visão Geral
 
-This contains everything you need to run your app locally.
+`LLM Key Vault` é uma aplicação frontend em React + Vite para gerenciar chaves e testar integrações com APIs de modelos (ex.: Gemini). O projeto está em fase de testes e desenvolvimento — use com cuidado em produção.
 
-View your app in AI Studio: https://ai.studio/apps/temp/2
+Funcionalidades principais (fase de testes):
+- Gerador/visualização de chaves (componente `Generator`).
+- Cartões de chave reutilizáveis (`KeyCard`).
+- Tela de login de desenvolvimento (`Login`).
+- Gráficos de estatísticas (`StatsChart`).
 
-## Run Locally
+Estrutura de pastas principal:
 
-**Prerequisites:**  Node.js
+- `App.tsx` — entrada principal da aplicação.
+- `index.tsx` — bootstrap do React.
+- `index.html` — template HTML usado pelo Vite.
+- `components/` — componentes React (`Generator.tsx`, `KeyCard.tsx`, `Login.tsx`, `StatsChart.tsx`).
+- `services/geminiService.ts` — serviço para comunicação com a API do modelo (ex.: Gemini).
+- `constants.ts`, `types.ts` — definições de tipos e constantes.
+- `vite.config.ts`, `tsconfig.json` — configuração do build/TypeScript.
 
+## Estado do Projeto
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+Esta aplicação está em **fase de testes**:
+- Algumas funções podem ser incompletas ou mockadas.
+- Não armazene chaves sensíveis em repositórios públicos.
+- Testes manuais e validações adicionais são recomendados antes de qualquer deploy.
+
+## Pré-requisitos
+
+- Node.js (recomendado LTS >= 18)
+- Git (para controle de versão)
+
+## Executando localmente (desenvolvimento)
+
+1. Instale dependências:
+
+```powershell
+cd 'c:\Users\lucca\OneDrive\Desktop\aplicação meio foda'
+npm install
+```
+
+2. Configure variáveis de ambiente (exemplo `.env.local` na raiz):
+
+```text
+# Exemplo de .env.local (NUNCA comitar chaves reais)
+GEMINI_API_KEY=your_gemini_api_key_here
+```
+
+3. Rode o servidor de desenvolvimento:
+
+```powershell
+npm run dev
+```
+
+4. Abra no navegador em `http://localhost:3000/` (ou a porta indicada pelo Vite).
+
+## Build para produção
+
+```powershell
+npm run build
+npm run preview
+```
+
+`npm run build` gera os arquivos otimizados em `dist/`. Use `npm run preview` para servir a build localmente.
+
+## Exemplos de uso / Fluxos de teste
+
+- Gerar chave localmente: abra a tela de `Generator` e clique em "Gerar" (ou comando equivalente no UI).
+- Testar requisição ao modelo: garanta que `GEMINI_API_KEY` esteja definida e use os formulários no UI que acionam `services/geminiService.ts`.
+- Visualizar estatísticas: abra a tela `StatsChart` para ver dados de uso (pode estar usando dados mock).
+
+## Segurança e boas práticas
+
+- Nunca comite arquivos `.env` ou chaves de API. `.gitignore` já inclui `*.env`.
+- Para produção, use segredos do provedor de hospedagem (Vercel, Netlify, GitHub Actions Secrets).
+- Limite o escopo das chaves e monitore uso anômalo.
+
+## Deploy
+
+Sugestões de deploy rápido:
+
+- Vercel: basta conectar o repositório GitHub; Vercel detecta Vite e fará build automaticamente.
+- Netlify: configurar build command `npm run build` e publish `dist`.
+
+## Contribuindo / Issues
+
+- Abra issues no repositório para bugs e features.
+- Para mudanças, faça forks/branches e envie PRs; siga o padrão `chore/feat/fix` nas mensagens de commit.
+
+## Observações finais
+
+Este repositório foi criado automaticamente a partir de um projeto em desenvolvimento. Se precisar, posso:
+- Adicionar um `README` em inglês.
+- Criar um workflow GitHub Action para build/CI.
+- Renomear a branch `master` para `main`.
 
 ## Create a Git repository and push to GitHub
 
